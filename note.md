@@ -4,7 +4,7 @@ Image and text query
 
 # Search result
 
-Image group by product name
+Image group by product name, include a reviews carousel
 
 Click to enlarge the picture
 

@@ -1,0 +1,242 @@
+# Sample data
+{
+  "product_metadata": {
+    "main_category": "All Beauty",
+    "title": "Eye Patch Black Adult with Tie Band (6 Per Pack)",
+    "average_rating": 4.4,
+    "rating_number": 26,
+    "features": [],
+    "description": [],
+    "price": null,
+    "images": [
+      {
+        "thumb": "https://m.media-amazon.com/images/I/31bz+uqzWCL._SS40_.jpg",
+        "large": "https://m.media-amazon.com/images/I/31bz+uqzWCL.jpg",
+        "variant": "MAIN",
+        "hi_res": null
+      },
+      {
+        "thumb": "https://m.media-amazon.com/images/I/31bz+uqzWCL._SS40_.jpg",
+        "large": "https://m.media-amazon.com/images/I/31bz+uqzWCL.jpg",
+        "variant": "PT01",
+        "hi_res": null
+      }
+    ],
+    "videos": [],
+    "store": "Levine Health Products",
+    "categories": [],
+    "details": {
+      "Manufacturer": "Levine Health Products"
+    },
+    "parent_asin": "B000B658RI",
+    "bought_together": null
+  },
+  "reviews": [
+    {
+      "rating": 5.0,
+      "title": "Five Stars",
+      "text": "just fine",
+      "images": [],
+      "asin": "B000B658RI",
+      "parent_asin": "B000B658RI",
+      "user_id": "AHNINRZONU3JHLYFWUNISXRFRSLA",
+      "timestamp": 1415990514000,
+      "helpful_vote": 0,
+      "verified_purchase": true
+    },
+    {
+      "rating": 5.0,
+      "title": "Nice",
+      "text": "I like that it ties.  You can make it as loose or tight as you want.",
+      "images": [],
+      "asin": "B000B658RI",
+      "parent_asin": "B000B658RI",
+      "user_id": "AHGQXX4S3ZR7YKZAMKURZAJGQ5DA",
+      "timestamp": 1426100053000,
+      "helpful_vote": 0,
+      "verified_purchase": true
+    },
+    {
+      "rating": 3.0,
+      "title": "Useful for temporary use or dirty work",
+      "text": "Just as described. Not padded, so air circulation is impossible. Patch itself is cheap but you get what you pay for. Arrived in a very timely manner. Useful for temporary use or dirty work. The ties are great and much more comfortable than elastic .",
+      "images": [],
+      "asin": "B000B658RI",
+      "parent_asin": "B000B658RI",
+      "user_id": "AGJOXQFQV65QYYABM3R2IDAMCA4A",
+      "timestamp": 1430154056000,
+      "helpful_vote": 0,
+      "verified_purchase": true
+    },
+    {
+      "rating": 3.0,
+      "title": "Three Stars",
+      "text": "These were really high quality but projected way too far to wear with my glasses.",
+      "images": [],
+      "asin": "B000B658RI",
+      "parent_asin": "B000B658RI",
+      "user_id": "AGLC3TKV3XPUOJUBUNU6HI7MBJFQ",
+      "timestamp": 1461779562000,
+      "helpful_vote": 0,
+      "verified_purchase": true
+    },
+    {
+      "rating": 5.0,
+      "title": "works great",
+      "text": "Just as advertised, quality as expected. Easy to adjust ties to avoid  messing up the way I put up my hair.",
+      "images": [],
+      "asin": "B000B658RI",
+      "parent_asin": "B000B658RI",
+      "user_id": "AEGJVI7U74ARJOATSJCZLDO57FHA",
+      "timestamp": 1392244941000,
+      "helpful_vote": 2,
+      "verified_purchase": true
+    },
+    {
+      "rating": 3.0,
+      "title": "eye patches",
+      "text": "Small black eye patches are difficult to find. Wish the item would have been higher quality. Purchased these before, they wear out quickly.",
+      "images": [],
+      "asin": "B000B658RI",
+      "parent_asin": "B000B658RI",
+      "user_id": "AHA2JZIVJ6IDSDADWGIU64QC66YQ",
+      "timestamp": 1294259967000,
+      "helpful_vote": 7,
+      "verified_purchase": true
+    },
+    {
+      "rating": 5.0,
+      "title": "Five Stars",
+      "text": "Best eye patch my husband says<br />They cover the eye very well<br />Comfortable",
+      "images": [],
+      "asin": "B000B658RI",
+      "parent_asin": "B000B658RI",
+      "user_id": "AGQPCDVE23BNWE7J7LSJWSCWWDJQ",
+      "timestamp": 1503776931805,
+      "helpful_vote": 0,
+      "verified_purchase": true
+    },
+    {
+      "rating": 3.0,
+      "title": "As some people have described, these are large eye ...",
+      "text": "As some people have described, these are large eye patches ((not smaller)).  But since I must have them I will keep them.",
+      "images": [],
+      "asin": "B000B658RI",
+      "parent_asin": "B000B658RI",
+      "user_id": "AHPELENWBKAGJJPOMC5ZKCZZDVUA",
+      "timestamp": 1444838904000,
+      "helpful_vote": 0,
+      "verified_purchase": true
+    },
+    {
+      "rating": 5.0,
+      "title": "Five Stars",
+      "text": "Love them! They are perfect!",
+      "images": [],
+      "asin": "B000B658RI",
+      "parent_asin": "B000B658RI",
+      "user_id": "AEAG2LEHAH6XL4F47ILMCTCB24UQ",
+      "timestamp": 1442016424000,
+      "helpful_vote": 0,
+      "verified_purchase": true
+    },
+    {
+      "rating": 5.0,
+      "title": "Oh Happy Mistake!",
+      "text": "I ordered the tie on eye patch.  Lo and behold, they came with elastic!  However my husband was VERY pleased with the elastic.  So I guess this seller is somehow psychic!!!",
+      "images": [],
+      "asin": "B000B658RI",
+      "parent_asin": "B000B658RI",
+      "user_id": "AFQT4Q4S43WGO5RP4CTR3OD7QPOQ",
+      "timestamp": 1162684222000,
+      "helpful_vote": 4,
+      "verified_purchase": true
+    },
+    {
+      "rating": 5.0,
+      "title": "Five Stars",
+      "text": "Satisfactory product.  No issues.",
+      "images": [],
+      "asin": "B000B658RI",
+      "parent_asin": "B000B658RI",
+      "user_id": "AFKDF2VIGDOMHGCLS2RAAP6VR3VQ",
+      "timestamp": 1445284646000,
+      "helpful_vote": 0,
+      "verified_purchase": true
+    },
+    {
+      "rating": 4.0,
+      "title": "Four Stars",
+      "text": "It's nice to be able to tie to a comfortable tightness",
+      "images": [],
+      "asin": "B000B658RI",
+      "parent_asin": "B000B658RI",
+      "user_id": "AFC5EMBRBUJQMLL6GG55P33OUODA",
+      "timestamp": 1445900024000,
+      "helpful_vote": 0,
+      "verified_purchase": true
+    },
+    {
+      "rating": 5.0,
+      "title": "Good Eye Patch",
+      "text": "It is good. No problems. Eye patch is as advertised. I would recommend it. Buy. You will like. Good. Good.",
+      "images": [],
+      "asin": "B000B658RI",
+      "parent_asin": "B000B658RI",
+      "user_id": "AGKYYI227CBKLQPICDD5PS55U27Q",
+      "timestamp": 1400493230000,
+      "helpful_vote": 0,
+      "verified_purchase": true
+    },
+    {
+      "rating": 5.0,
+      "title": "everything was fine",
+      "text": "everything was fine everything was fine on time no damage could reccomend for any one everything was fine on time no damage could reccomend for any one",
+      "images": [],
+      "asin": "B000B658RI",
+      "parent_asin": "B000B658RI",
+      "user_id": "AFJN7ZXI3H3JA4KEKUNOUF5TTFYA",
+      "timestamp": 1381250601000,
+      "helpful_vote": 0,
+      "verified_purchase": true
+    }
+  ]
+}
+
+# Review sample with image
+{"rating": 5.0, "title": "Will buy AGAIN!", "text": "This wig was beautiful out of the box. The color looked amazing, I am very happy with this especially the price.", "images": [{"small_image_url": "https://images-na.ssl-images-amazon.com/images/I/61JBRKugcRL._SL256_.jpg", "medium_image_url": "https://images-na.ssl-images-amazon.com/images/I/61JBRKugcRL._SL800_.jpg", "large_image_url": "https://images-na.ssl-images-amazon.com/images/I/61JBRKugcRL._SL1600_.jpg", "attachment_type": "IMAGE"}], "asin": "B08C9R88C6", "parent_asin": "B08C9R88C6", "user_id": "AGJAAYPH4ZECTZSBOCXL7UFJRWVA", "timestamp": 1601317294463, "helpful_vote": 23, "verified_purchase": true}
+
+# Product sample with feature and description
+"product_metadata": {
+        "main_category": "All Beauty",
+        "title": "Precision Plunger Bars for Cartridge Grips \u2013 93mm \u2013 Bag of 10 Plungers",
+        "average_rating": 4.3,
+        "rating_number": 7,
+        "features": [
+            "Material: 304 Stainless Steel; Brass tip",
+            "Lengths Available: 88mm, 93mm, 98mm",
+            "Accepts cartridge needles with vice style tattoo machines",
+            "Works perfectly with Precision Disposable Soft Cartridge Grips",
+            "Price per one bag of 10 plungers"
+        ],
+        "description": [
+            "The Precision Plunger Bars are designed to work seamlessly with the\u00a0Precision Disposable 1. 25\" Contoured Soft Cartridge Grips\u00a0and the\u00a0Precision Disposable 1\" Textured Soft Cartridge Grips\u00a0to drive cartridge needles with vice style or standard tattoo machine setups. These plunger bars are manufactured from 304 Stainless Steel and feature a brass tip. The plungers are sold in a bag of ten in your choice of 88mm, 93mm, or 98mm length."
+        ],
+        "price": null,
+        "images": [
+            {
+                "thumb": "https://m.media-amazon.com/images/I/31TgqAZ8kQL._SS40_.jpg",
+                "large": "https://m.media-amazon.com/images/I/31TgqAZ8kQL.jpg",
+                "variant": "MAIN",
+                "hi_res": null
+            }
+        ],
+        "videos": [],
+        "store": "Precision",
+        "categories": [],
+        "details": {
+            "UPC": "644287689178"
+        },
+        "parent_asin": "B07NGFDN6G",
+        "bought_together": null
+    },
