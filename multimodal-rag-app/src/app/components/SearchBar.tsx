@@ -33,13 +33,14 @@ const SearchComponent: React.FC = () => {
 
   const form = useForm<SearchSchema>({
     resolver: zodResolver(searchSchema),
-    defaultValues: { query: "", image: undefined },
+    defaultValues: { query: "", image: undefined, limit: 10 },
   });
 
   const handleSearch = async (values: SearchSchema) => {
     const formData = new FormData();
     formData.append("image", values.image);
     formData.append("text", values.query);
+    formData.append("limit", values.limit.toString());
 
     try {
       const res = await fetch("http://localhost:5000/search", {
@@ -62,7 +63,7 @@ const SearchComponent: React.FC = () => {
     if (file) {
       setImageFile(file);
       setImagePreview(URL.createObjectURL(file));
-      form.setValue("image", file); // Update form value
+      form.setValue("image", file);
     }
   };
 
@@ -85,6 +86,27 @@ const SearchComponent: React.FC = () => {
             </FormItem>
           )}
         />
+
+        <FormField
+          control={form.control}
+          name="limit"
+          render={({ field }) => (
+            <FormItem className="absolute right-40 mt-4 w-20">
+              <FormLabel className="hidden">Result Limit</FormLabel>
+              {/* <FormMessage className="absolute bottom-0 text-sm" /> */}
+              <FormControl>
+                <Input
+                  type="number"
+                  placeholder="Limit (1-30)"
+                  min={1}
+                  max={30}
+                  {...field}
+                />
+              </FormControl>
+            </FormItem>
+          )}
+        />
+
         <Dialog>
           <DialogTrigger asChild className="absolute right-20 mt-5">
             <Button type="button" variant="gooeyLeft">

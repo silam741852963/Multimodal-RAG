@@ -1,5 +1,3 @@
-"use client"
-
 import { z } from "zod";
 
 export const searchSchema = z.object({
@@ -9,6 +7,11 @@ export const searchSchema = z.object({
         .refine((file) => file.type.startsWith("image/"), {
             message: "File must be an image",
         }),
+    limit: z
+        .number()
+        .int()
+        .min(1, { message: "Limit must be at least 1" })
+        .max(30, { message: "Limit cannot exceed 30" })
 });
 
 export type SearchSchema = z.infer<typeof searchSchema>;

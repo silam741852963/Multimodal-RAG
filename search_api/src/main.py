@@ -33,13 +33,13 @@ encoder = Encoder(MODEL_NAME, MODEL_PATH)
 app = Flask(__name__)
 CORS(app)
 
-def send_query_to_db(query_vec):
-    """Send the embedding query to the database."""
+def send_query_to_db(query_vec, limit):
+    """Send the embedding query to the database with a specified limit."""
     conn = http.client.HTTPSConnection(ZILLIZ_HOST)
     payload = json.dumps({
         "collectionName": "Product",
         "data": [query_vec],
-        "limit": 10,
+        "limit": limit,
         "outputFields": ["*"]
     })
     headers = {
@@ -62,6 +62,9 @@ def search():
     image = request.files['image']
     query_text = request.form['text']
     
+    # Optional limit parameter
+    limit = int(request.form.get('limit', 10))  # Default to 10 if limit not provided
+    
     # Save the image temporarily
     image_filename = secure_filename(image.filename)
     temp_image_path = os.path.join("temp", image_filename)
@@ -75,7 +78,7 @@ def search():
     os.remove(temp_image_path)
     
     # Send the embedding to the database and get results
-    response = send_query_to_db(query_vec)
+    response = send_query_to_db(query_vec, limit)
     
     return jsonify(json.loads(response))
 
