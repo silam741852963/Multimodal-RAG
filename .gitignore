@@ -11,10 +11,9 @@ search_api/Include/
 search_api/Lib/
 search_api/Scripts/
 search_api/share/
-search_api/data/*.jsonl
-search_api/data/*.json
 search_api/FlagEmbedding/
 search_api/models/
+search_api/data/
 
 
 # Jupyter Notebook checkpoints
@@ -44,3 +43,7 @@ Pipfile.lock
 # OS-generated files
 .DS_Store
 Thumbs.db
+
+zilliz-cloud-MultimodalRag-username-password.txt
+
+.env

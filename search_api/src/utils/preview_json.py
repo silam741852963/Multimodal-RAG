@@ -16,7 +16,7 @@ def preview_data(data, num_entries=5):
         print(json.dumps(entry, indent=4))
 
 # File path to the linked data
-linked_data_file = "../data/linked_All_Beauty.jsonl"
+linked_data_file = "../data/reconstructed_All_Beauty_with_embeddings.json"
 
 # Load and preview the linked data
 linked_data = load_jsonl(linked_data_file)
