@@ -58,12 +58,20 @@ def search():
     """API endpoint for searching with an image and text query."""
     if 'image' not in request.files or 'text' not in request.form:
         return jsonify({"error": "Image file and text query are required."}), 400
-    
+
     image = request.files['image']
     query_text = request.form['text']
     
-    # Optional limit parameter
-    limit = int(request.form.get('limit', 10))  # Default to 10 if limit not provided
+    # Validate and parse the limit parameter
+    try:
+        limit = int(request.form.get('limit', 10))
+        if limit < 1 or limit > 30:
+            return jsonify({"error": "Limit must be between 1 and 30."}), 400
+    except ValueError:
+        return jsonify({"error": "Invalid limit value."}), 400
+    
+    # Debug logging to verify limit handling
+    app.logger.debug(f"Limit received: {limit}")
     
     # Save the image temporarily
     image_filename = secure_filename(image.filename)
