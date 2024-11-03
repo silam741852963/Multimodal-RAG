@@ -7,7 +7,7 @@ export const searchSchema = z.object({
         .refine((file) => file.type.startsWith("image/"), {
             message: "File must be an image",
         }),
-    limit: z
+    limit: z.coerce
         .number()
         .int()
         .min(1, { message: "Limit must be at least 1" })

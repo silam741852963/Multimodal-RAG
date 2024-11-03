@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { searchSchema, SearchSchema } from "@/schemas/searchSchema";
@@ -17,28 +17,49 @@ import {
   Dialog,
   DialogTrigger,
   DialogContent,
-  DialogHeader,
   DialogFooter,
+  DialogTitle,
 } from "@/components/ui/dialog";
 import Image from "next/image";
-import { DialogTitle } from "@radix-ui/react-dialog";
-import { Search } from "lucide-react";
-import { ImageIcon } from "lucide-react";
-import { Upload } from "lucide-react";
+import { Search, ImageIcon, Upload } from "lucide-react";
+import { useSearchContext } from "@/components/context/SearchContext";
+import ErrorMessages from "./ErrorMessages";
 
-const SearchComponent: React.FC = () => {
-  const [response, setResponse] = useState<any>(null);
-  const [imageFile, setImageFile] = useState<File | null>(null);
+const SearchBar: React.FC = () => {
+  const { setSearchData, setResponse } = useSearchContext();
   const [imagePreview, setImagePreview] = useState<string | null>(null);
+  const [isUploading, setIsUploading] = useState(false);
+  const [dialogOpen, setDialogOpen] = useState(false);
 
   const form = useForm<SearchSchema>({
     resolver: zodResolver(searchSchema),
-    defaultValues: { query: "", image: undefined, limit: 10 },
+    defaultValues: { query: "", limit: 10 },
   });
+
+  const {
+    reset,
+    handleSubmit,
+    setValue,
+    formState: { errors },
+  } = form;
+
+  // Collect all errors for universal display
+  const errorMessages = [
+    errors.query?.message,
+    errors.limit?.message,
+    errors.image?.message,
+  ].filter(Boolean) as string[];
+
+  useEffect(() => {
+    // Reset the form with default values if needed
+    reset();
+  }, [reset]);
 
   const handleSearch = async (values: SearchSchema) => {
     const formData = new FormData();
-    formData.append("image", values.image);
+    if (values.image) {
+      formData.append("image", values.image);
+    }
     formData.append("text", values.query);
     formData.append("limit", values.limit.toString());
 
@@ -51,7 +72,8 @@ const SearchComponent: React.FC = () => {
       if (!res.ok) throw new Error(`Server error: ${res.statusText}`);
 
       const result = await res.json();
-      setResponse(result);
+      setResponse(result); // Update response in context
+      setSearchData(values); // Persist search parameters for context use
     } catch (error) {
       console.error("Error during search request:", error);
       alert("There was an error processing your request.");
@@ -61,16 +83,23 @@ const SearchComponent: React.FC = () => {
   const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (file) {
-      setImageFile(file);
+      setValue("image", file); // Update form state for image
       setImagePreview(URL.createObjectURL(file));
-      form.setValue("image", file);
     }
+  };
+
+  const confirmUpload = () => {
+    setIsUploading(true);
+    setTimeout(() => {
+      setIsUploading(false);
+      setDialogOpen(false); // Close dialog after upload
+    }, 1000);
   };
 
   return (
     <Form {...form}>
       <form
-        onSubmit={form.handleSubmit(handleSearch)}
+        onSubmit={handleSubmit(handleSearch)}
         className="flex-grow self-end relative"
       >
         <FormField
@@ -79,86 +108,85 @@ const SearchComponent: React.FC = () => {
           render={({ field }) => (
             <FormItem>
               <FormLabel className="hidden">Text Query</FormLabel>
-              <FormMessage className="absolute right-2 text-sm" />
+              {/* <FormMessage className="absolute right-2 text-sm" /> */}
               <FormControl>
                 <Input placeholder="Enter search query" {...field} />
               </FormControl>
             </FormItem>
           )}
         />
+        <section className="flex absolute mt-10 h-10 justify-between items-end w-full">
+          <ErrorMessages errors={errorMessages} />
+          <section className="flex gap-10">
+            <FormField
+              control={form.control}
+              name="limit"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel className="hidden">Result Limit</FormLabel>
+                  <FormControl>
+                    <Input
+                      type="number"
+                      placeholder="Limit (1-30)"
+                      min={1}
+                      max={30}
+                      {...field}
+                    />
+                  </FormControl>
+                </FormItem>
+              )}
+            />
 
-        <FormField
-          control={form.control}
-          name="limit"
-          render={({ field }) => (
-            <FormItem className="absolute right-40 mt-4 w-20">
-              <FormLabel className="hidden">Result Limit</FormLabel>
-              {/* <FormMessage className="absolute bottom-0 text-sm" /> */}
-              <FormControl>
-                <Input
-                  type="number"
-                  placeholder="Limit (1-30)"
-                  min={1}
-                  max={30}
-                  {...field}
+            <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
+              <DialogTrigger asChild>
+                <Button
+                  type="button"
+                  variant="gooeyLeft"
+                  onClick={() => setDialogOpen(true)}
+                >
+                  <ImageIcon />
+                </Button>
+              </DialogTrigger>
+              <DialogContent>
+                <DialogTitle>Upload Image</DialogTitle>
+                <input
+                  type="file"
+                  accept="image/*"
+                  onChange={handleImageUpload}
                 />
-              </FormControl>
-            </FormItem>
-          )}
-        />
+                {imagePreview && (
+                  <div className="mt-4">
+                    <Image
+                      src={imagePreview}
+                      alt="Image Preview"
+                      width={200}
+                      height={200}
+                      className="rounded-md mx-auto"
+                    />
+                  </div>
+                )}
+                <DialogFooter>
+                  <Button
+                    type="button"
+                    onClick={confirmUpload}
+                    variant="gooeyLeft"
+                    disabled={isUploading}
+                    className="w-full"
+                  >
+                    {isUploading ? "Uploading..." : <Upload />}
+                  </Button>
+                </DialogFooter>
+              </DialogContent>
+            </Dialog>
 
-        <Dialog>
-          <DialogTrigger asChild className="absolute right-20 mt-5">
-            <Button type="button" variant="gooeyLeft">
-              <ImageIcon />
+            <Button type="submit" variant="gooeyLeft">
+              <Search />
             </Button>
-          </DialogTrigger>
-          <DialogContent>
-            <DialogTitle className="hidden">Upload Image</DialogTitle>
-            <DialogHeader>
-              <FormLabel>Upload Image</FormLabel>
-            </DialogHeader>
-            <input type="file" accept="image/*" onChange={handleImageUpload} />
-            {imagePreview && (
-              <div className="mt-4">
-                <Image
-                  src={imagePreview}
-                  alt="Image Preview"
-                  width={200}
-                  height={200}
-                  className="rounded-md"
-                />
-              </div>
-            )}
-            <DialogFooter>
-              <Button
-                type="button"
-                onClick={() => form.setValue("image", imageFile as File)}
-                variant="gooeyLeft"
-              >
-                <Upload />
-              </Button>
-            </DialogFooter>
-          </DialogContent>
-        </Dialog>
-
-        <Button
-          type="submit"
-          variant="gooeyLeft"
-          className="absolute mt-5 right-0"
-        >
-          <Search />
-        </Button>
+          </section>
+        </section>
       </form>
-
-      {response && (
-        <div>
-          <h3>Search Results:</h3>
-          <pre>{JSON.stringify(response, null, 2)}</pre>
-        </div>
-      )}
     </Form>
   );
 };
 
-export default SearchComponent;
+export default SearchBar;

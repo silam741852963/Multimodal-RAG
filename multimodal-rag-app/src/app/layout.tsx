@@ -1,7 +1,9 @@
-import type { Metadata } from "next";
+"use client";
 import localFont from "next/font/local";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
+import { SearchProvider } from "@/components/context/SearchContext";
+import { KindeProvider } from "@kinde-oss/kinde-auth-nextjs";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -18,30 +20,27 @@ const BeautyDemo = localFont({
   variable: "--font-beauty-demo",
 });
 
-export const metadata: Metadata = {
-  title: "All Beauty",
-  description: "Search all beauty products on Amazon by image",
-};
-
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} ${BeautyDemo.variable} antialiased font-mono`}
-      >
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="system"
-          enableSystem
-          disableTransitionOnChange
+    <KindeProvider>
+      <html lang="en" suppressHydrationWarning>
+        <body
+          className={`${geistSans.variable} ${geistMono.variable} ${BeautyDemo.variable} antialiased font-mono`}
         >
-          {children}
-        </ThemeProvider>
-      </body>
-    </html>
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="system"
+            enableSystem
+            disableTransitionOnChange
+          >
+            <SearchProvider>{children}</SearchProvider>
+          </ThemeProvider>
+        </body>
+      </html>
+    </KindeProvider>
   );
 }

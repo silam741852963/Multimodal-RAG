@@ -3,7 +3,6 @@
 import * as React from "react";
 import Autoplay from "embla-carousel-autoplay";
 import Link from "next/link";
-import { Search } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 import { Card, CardContent } from "@/components/ui/card";

@@ -1,6 +1,12 @@
+import type { Metadata } from "next";
 import Image from "next/image";
 import Nav from "./components/Nav";
 import { Hero } from "./components/Hero";
+
+export const metadata: Metadata = {
+  title: "All Beauty",
+  description: "Search all beauty products on Amazon by image",
+};
 
 export default function Home() {
   return (
