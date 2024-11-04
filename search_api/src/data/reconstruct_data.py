@@ -39,26 +39,26 @@ def reconstruct_data(linked_data):
         # Transform and truncate data to fit the constraints
         transformed_entry = {
             "embed_image": None,  # Placeholder for 768-D float vector
-            "main_category": safe_truncate(product_metadata.get("main_category"), 50),  # VARCHAR(50)
-            "title": safe_truncate(product_metadata.get("title"), 200),  # VARCHAR(200)
+            "main_category": safe_truncate(product_metadata.get("main_category"), 250),  # VARCHAR(250)
+            "title": safe_truncate(product_metadata.get("title"), 1000),  # VARCHAR(1000)
             "average_rating": float(product_metadata.get("average_rating", 0)),  # FLOAT
             "rating_number": int(product_metadata.get("rating_number", 0)),  # INT32
-            "features": safe_list_truncate(product_metadata.get("features", []), 30),  # Array<VARCHAR(200)>[30]
-            "description": safe_list_truncate(product_metadata.get("description", []), 30),  # Array<VARCHAR(200)>[30]
+            "features": safe_list_truncate(product_metadata.get("features", []), 150),  # Array<VARCHAR(2000)>[150]
+            "description": safe_list_truncate(product_metadata.get("description", []), 150),  # Array<VARCHAR(5000)>[150]
             "images_thumb": safe_list_truncate(
-                [img.get("thumb") for img in product_metadata.get("images", [])], 10
-            ),  # Array<VARCHAR(100)>[10]
+                [img.get("thumb") for img in product_metadata.get("images", [])], 150
+            ),  # Array<VARCHAR(100)>[150]
             "images_large": safe_list_truncate(
-                [img.get("large") for img in product_metadata.get("images", [])], 10
-            ),  # Array<VARCHAR(100)>[10]
-            "store": safe_truncate(product_metadata.get("store"), 100),  # VARCHAR(100)
+                [img.get("large") for img in product_metadata.get("images", [])], 150
+            ),  # Array<VARCHAR(100)>[150]
+            "store": safe_truncate(product_metadata.get("store"), 500),  # VARCHAR(500)
             "parent_asin": safe_truncate(product_metadata.get("parent_asin"), 15),  # VARCHAR(15)
-            "reviews_title": safe_list_truncate([safe_truncate(review.get("title"), 100) for review in reviews], 5),  # Array<VARCHAR(100)>[5]
-            "reviews_text": safe_list_truncate([safe_truncate(review.get("text"), 1000) for review in reviews], 5),  # Array<VARCHAR(1000)>[5]
-            "reviews_rating": safe_list_truncate([float(review.get("rating", 0)) for review in reviews], 5),  # Array<FLOAT>[5]
-            "reviews_timestamp": safe_list_truncate([int(review.get("timestamp", 0)) for review in reviews], 5),  # Array<INT64>[5]
-            "reviews_verified_purchase": safe_list_truncate([review.get("verified_purchase", False) for review in reviews], 5),  # Array<BOOL>[5]
-            "reviews_helpful_vote": safe_list_truncate([int(review.get("helpful_vote", 0)) for review in reviews], 5)  # Array<INT32>[5]
+            "reviews_title": safe_list_truncate([safe_truncate(review.get("title"), 100) for review in reviews], 100),  # Array<VARCHAR(100)>[100]
+            "reviews_text": safe_list_truncate([safe_truncate(review.get("text"), 5000) for review in reviews], 100),  # Array<VARCHAR(5000)>[100]
+            "reviews_rating": safe_list_truncate([float(review.get("rating", 0)) for review in reviews], 100),  # Array<FLOAT>[100]
+            "reviews_timestamp": safe_list_truncate([int(review.get("timestamp", 0)) for review in reviews], 100),  # Array<INT64>[100]
+            "reviews_verified_purchase": safe_list_truncate([review.get("verified_purchase", False) for review in reviews], 100),  # Array<BOOL>[100]
+            "reviews_helpful_vote": safe_list_truncate([int(review.get("helpful_vote", 0)) for review in reviews], 100)  # Array<INT32>[100]
         }
 
         # Add the transformed entry to the final dataset
